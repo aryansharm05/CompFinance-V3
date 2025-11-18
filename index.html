@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompFinance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" class="theme-toggle">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- App Title at the very top -->
+    <header class="app-header">
+        <h1 class="app-title">CompFinance</h1>
+    </header>
+
+    <!-- Page Content -->
+    <main>
+        <!-- Overview Page -->
+        <section id="overview" class="page active">
+            <div class="welcome-center">
+                <h2 class="welcome-message">Welcome to CompFinance!</h2>
+                <div class="mission-statement">
+                    <p class="mission-text"> An automated tool for small or local businesses dreaming to IPO one day</p>
+                </div>
+                <p class="sub-mission">Evaluate your company's current financial health in minutes</p>
+                <div class="button-spacer"></div>
+                <div class="get-started-center">
+                    <button class="square-button" onclick="navigateTo('company-info')">
+                        Get Started <span class="arrow">→</span>
+                    </button>
+                </div>
+                <div class="get-started-center" style="margin-top: 24px;">
+                    <button class="square-button" onclick="navigateTo('about-compfinance')">
+                        About CompFinance <span class="arrow">→</span>
+                    </button>
+                </div>
+                <div class="demo-analysis-row" style="margin-top: 80px;">
+                    <div class="demo-analysis-textbox">See how CompFinance performed an analysis on Walmart before you get started</div>
+                    <button class="demo-analysis-btn" onclick="navigateTo('walmart-analysis')">view here</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Tabs below the app title, after overview -->
+        <nav class="tabs">
+            <button class="tab-btn active" data-page="overview">Overview</button>
+            <button class="tab-btn" data-page="company-info">Company Info</button>
+            <button class="tab-btn" data-page="financial-input">Financial Input</button>
+            <button class="tab-btn" data-page="financial-ratios">Financial Ratios</button>
+            <button class="tab-btn" data-page="industry-benchmark">Industry Benchmark</button>
+        </nav>
+
+        <!-- Company Info Page -->
+        <section id="company-info" class="page">
+            <h2>Company Information</h2>
+            <p class="company-subtitle">Let's start by setting up your company profile. This information will help us provide relevant industry comparisons.</p>
+            <form id="companyForm" class="form-container">
+                <div class="form-group">
+                    <label for="companyName">Company Name</label>
+                    <input type="text" id="companyName" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="productType">Product Type</label>
+                    <select id="productType" required>
+                        <option value="">Select Product Type</option>
+                        <option value="physical-service">Physical Service</option>
+                        <option value="online-service">Online Service</option>
+                        <option value="physical-product">Physical Product</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="industry">Industry</label>
+                    <select id="industry" required>
+                        <option value="">Select Industry</option>
+                        <option value="agriculture">A - Agriculture, Forestry, And Fishing</option>
+                        <option value="mining">B - Mining</option>
+                        <option value="construction">C - Construction</option>
+                        <option value="manufacturing">D - Manufacturing</option>
+                        <option value="transportation">E - Transportation, Communications, Electric, Gas, And Sanitary Services</option>
+                        <option value="wholesale">F - Wholesale Trade</option>
+                        <option value="retail">G - Retail Trade</option>
+                        <option value="finance">H - Finance, Insurance, And Real Estate</option>
+                        <option value="services">I - Services</option>
+                        <option value="public-admin">J - Public Administration</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="back-btn" onclick="navigateTo('overview')">Back</button>
+                    <button type="button" class="continue-btn">Continue</button>
+                </div>
+                <div class="company-info-block">
+                    <h3 class="company-info-title">Why this information matters</h3>
+                    <p class="company-info-desc">Your company's product type and industry help us provide accurate financial benchmarks. We'll use this information to compare your ratios against similar businesses, giving you valuable context for your financial performance.</p>
+                </div>
+            </form>
+        </section>
+
+        <!-- Financial Input Page -->
+        <section id="financial-input" class="page">
+            <h2>Financial Information</h2>
+            <p class="financial-subtitle">Enter your company's financial data from your income statement and balance sheet. This information will be used to calculate key financial ratios.</p>
+            <form id="financialForm" class="form-container">
+                <div class="financial-section">
+                    <h3>Income Statement</h3>
+                    <div class="form-group">
+                        <label for="grossRevenue">Gross Revenue</label>
+                        <input type="number" id="grossRevenue" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cogs">Cost of Goods Sold (COGS)</label>
+                        <input type="number" id="cogs" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="netIncome">Net Income</label>
+                        <input type="number" id="netIncome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sales">Sales</label>
+                        <input type="number" id="sales" required>
+                    </div>
+                </div>
+
+                <div class="financial-section">
+                    <h3>Balance Sheet</h3>
+                    <div class="form-group">
+                        <label for="currentAssets">Current Assets</label>
+                        <input type="number" id="currentAssets" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="currentLiabilities">Current Liabilities</label>
+                        <input type="number" id="currentLiabilities" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shareholdersEquity">Shareholder's Equity</label>
+                        <input type="number" id="shareholdersEquity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inventory">Inventory</label>
+                        <input type="number" id="inventory" required>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="back-btn" onclick="navigateTo('company-info')">Back</button>
+                    <button type="button" class="continue-btn">Continue</button>
+                </div>
+                <div class="financial-info-block">
+                    <h3 class="financial-info-title"><span class="financial-info-icon">❓</span> Need help finding these numbers?</h3>
+                    <p class="financial-info-desc">The data needed can typically be found in your company's annual financial statements. For the most accurate analysis, use audited financial statements or your accounting software's reports.</p>
+                </div>
+            </form>
+        </section>
+
+        <!-- Financial Ratios Page -->
+        <section id="financial-ratios" class="page">
+            <h2 class="centered-header">Financial Ratio Information</h2>
+            <p class="ratios-subtitle">These ratios are calculated based on your financial data. They provide insights into your company's financial health across different dimensions.</p>
+            <div class="ratios-vertical-stack">
+                <div class="ratio-category-block">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <span class="ratio-header">
+                            <svg fill="none" viewBox="0 0 24 24"><path d="M4 17l6-6 4 4 6-6" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17h4v-4" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <h3 class="ratio-category-title" style="margin-bottom: 0;">Profitability Ratios</h3>
+                        </span>
+                        <button class="info-btn" id="moreInfoBtn">More Info on Ratios</button>
+                    </div>
+                    <div class="ratio-grid">
+                        <div class="ratio-card">
+                            <h4>Net Profit Margin</h4>
+                            <p id="netProfitMargin" class="ratio-value">-</p>
+                            <p class="ratio-definition">Measures how much net income is generated as a percentage of revenue.</p>
+                            <p id="netProfitMarginStatus" class="ratio-status"></p>
+                        </div>
+                        <div class="ratio-card">
+                            <h4>Return on Equity (ROE)</h4>
+                            <p id="roe" class="ratio-value">-</p>
+                            <p class="ratio-definition">Measures the profitability of a business in relation to shareholder's equity.</p>
+                            <p id="roeStatus" class="ratio-status"></p>
+                        </div>
+                        <div class="ratio-card">
+                            <h4>Return on Assets (ROA)</h4>
+                            <p id="roa" class="ratio-value">-</p>
+                            <p class="ratio-definition">Measures how efficiently a company uses its assets to generate earnings.</p>
+                            <p id="roaStatus" class="ratio-status"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ratio-category-block">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <span class="ratio-header">
+                            <svg fill="none" viewBox="0 0 24 24"><path d="M4 12c2-4 6-4 8 0s6 4 8 0" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <h3 class="ratio-category-title">Liquidity Ratios</h3>
+                        </span>
+                    </div>
+                    <div class="ratio-grid">
+                        <div class="ratio-card">
+                            <h4>Current Ratio</h4>
+                            <p id="currentRatio" class="ratio-value">-</p>
+                            <p class="ratio-definition">Measures a company's ability to pay short-term obligations.</p>
+                            <p id="currentRatioStatus" class="ratio-status"></p>
+                        </div>
+                        <div class="ratio-card">
+                            <h4>Quick Ratio</h4>
+                            <p id="quickRatio" class="ratio-value">-</p>
+                            <p class="ratio-definition">Measures a company's ability to meet short-term obligations with its most liquid assets.</p>
+                            <p id="quickRatioStatus" class="ratio-status"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ratio-category-block">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <span class="ratio-header">
+                            <svg fill="none" viewBox="0 0 24 24"><rect x="3" y="10" width="3" height="10" rx="1.5" fill="#a78bfa"/><rect x="9" y="6" width="3" height="14" rx="1.5" fill="#a78bfa"/><rect x="15" y="3" width="3" height="17" rx="1.5" fill="#a78bfa"/></svg>
+                            <h3 class="ratio-category-title">Efficiency Ratios</h3>
+                        </span>
+                    </div>
+                    <div class="ratio-grid">
+                        <div class="ratio-card">
+                            <h4>Asset Turnover</h4>
+                            <p id="assetTurnover" class="ratio-value">-</p>
+                            <p class="ratio-definition">Measures how efficiently a company uses its assets to generate sales.</p>
+                            <p id="assetTurnoverStatus" class="ratio-status"></p>
+                        </div>
+                        <div class="ratio-card">
+                            <h4>Inventory Turnover</h4>
+                            <p id="inventoryTurnover" class="ratio-value">-</p>
+                            <p class="ratio-definition">Measures how many times a company's inventory is sold and replaced over a period.</p>
+                            <p id="inventoryTurnoverStatus" class="ratio-status"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ratio-category-block">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <span class="ratio-header">
+                            <svg fill="none" viewBox="0 0 24 24"><path d="M7 20V7a5 5 0 0 1 10 0v13" stroke="#facc15" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 20h20" stroke="#facc15" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 20a5 5 0 0 0 10 0" stroke="#facc15" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <h3 class="ratio-category-title">Leverage Ratios</h3>
+                        </span>
+                    </div>
+                    <div class="ratio-grid">
+                        <div class="ratio-card">
+                            <h4>Debt to Equity</h4>
+                            <p id="debtToEquity" class="ratio-value">-</p>
+                            <p class="ratio-definition">Measures a company's financial leverage by comparing total debt to shareholder's equity.</p>
+                            <p id="debtToEquityStatus" class="ratio-status"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="back-btn" onclick="navigateTo('financial-input')">Back</button>
+                <button type="button" class="continue-btn" onclick="navigateTo('industry-benchmark')">Continue</button>
+            </div>
+        </section>
+
+        <!-- Industry Benchmark Page -->
+        <section id="industry-benchmark" class="page">
+            <h2 class="centered-header">Industry Benchmark</h2>
+            <p class="benchmark-subtitle">Comparing <span id="benchmarkCompanyName" class="benchmark-autofill">[Company Name]</span> with <span id="benchmarkIndustry" class="benchmark-autofill">[Industry]</span> industry averages</p>
+            <div class="benchmark-container">
+                <div class="benchmark-section">
+                    <h3>Your Ratios vs Industry Average</h3>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ratio</th>
+                                    <th>Your Company</th>
+                                    <th>Industry Average</th>
+                                </tr>
+                            </thead>
+                            <tbody id="benchmarkTableBody">
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="benchmark-section">
+                    <h3>Visual Comparison</h3>
+                    <div id="benchmarkChart" class="chart-container">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="back-btn" onclick="navigateTo('financial-ratios')">Back</button>
+                <button type="button" class="restart-btn" onclick="navigateTo('overview')">Start Over</button>
+            </div>
+        </section>
+
+        <!-- Ratio Info Page -->
+        <section id="ratio-info" class="page">
+            <div class="ratios-vertical-stack">
+                <div class="ratio-category-block">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <span class="ratio-header">
+                            <svg fill="none" viewBox="0 0 24 24"><path d="M4 17l6-6 4 4 6-6" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17h4v-4" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <h3 class="ratio-category-title" style="margin-bottom: 0;">Profitability Ratios</h3>
+                        </span>
+                        <button class="info-btn" id="backToRatiosBtn">Back to Financial Ratios</button>
+                    </div>
+                    <div class="ratio-info-card">
+                        <h4>Net Profit Margin</h4>
+                        <p>Net Profit Margin measures the percentage of revenue that exceeds costs. It shows how much profit a company generates from its total revenue.</p>
+                        <div class="ratio-formula">Formula: Net Income ÷ Revenue</div>
+                        <p class="ratio-info-desc">A higher net profit margin indicates that a company is more efficient at converting revenue into actual profit. Typically, a 10-20% margin is considered good, while above 20% is excellent in many industries.</p>
+                    </div>
+                    <div class="ratio-info-card">
+                        <h4>Return on Equity (ROE)</h4>
+                        <p>Return on Equity measures how efficiently a company uses its equity to generate profits. It shows the profit generated with the money shareholders have invested.</p>
+                        <div class="ratio-formula">Formula: Net Income ÷ Shareholders' Equity</div>
+                        <p class="ratio-info-desc">ROE is a key metric for investors as it shows how effectively a company is using its equity investment. A good ROE is typically considered to be 15-20% or higher, though this varies by industry.</p>
+                    </div>
+                    <div class="ratio-info-card">
+                        <h4>Return on Assets (ROA)</h4>
+                        <p>Return on Assets measures how efficiently a company uses its assets to generate profits.</p>
+                        <div class="ratio-formula">Formula: Net Income ÷ Total Assets</div>
+                        <p class="ratio-info-desc">A higher ROA means the company is using its assets efficiently. A ROA above 5% is generally considered good.</p>
+                    </div>
+                </div>
+                <div class="ratio-category-block">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <span class="ratio-header">
+                            <svg fill="none" viewBox="0 0 24 24"><path d="M4 12c2-4 6-4 8 0s6 4 8 0" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <h3 class="ratio-category-title">Liquidity Ratios</h3>
+                        </span>
+                    </div>
+                    <div class="ratio-info-card">
+                        <h4>Current Ratio</h4>
+                        <p>Current Ratio measures a company's ability to pay short-term obligations.</p>
+                        <div class="ratio-formula">Formula: Current Assets ÷ Current Liabilities</div>
+                        <p class="ratio-info-desc">A current ratio above 1.5 is considered healthy for most businesses.</p>
+                    </div>
+                    <div class="ratio-info-card">
+                        <h4>Quick Ratio</h4>
+                        <p>Quick Ratio measures a company's ability to meet short-term obligations with its most liquid assets.</p>
+                        <div class="ratio-formula">Formula: (Current Assets - Inventory) ÷ Current Liabilities</div>
+                        <p class="ratio-info-desc">A quick ratio above 1 is considered good, indicating the company can meet its short-term liabilities without selling inventory.</p>
+                    </div>
+                </div>
+                <div class="ratio-category-block">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <span class="ratio-header">
+                            <svg fill="none" viewBox="0 0 24 24"><rect x="3" y="10" width="3" height="10" rx="1.5" fill="#a78bfa"/><rect x="9" y="6" width="3" height="14" rx="1.5" fill="#a78bfa"/><rect x="15" y="3" width="3" height="17" rx="1.5" fill="#a78bfa"/></svg>
+                            <h3 class="ratio-category-title">Efficiency Ratios</h3>
+                        </span>
+                    </div>
+                    <div class="ratio-info-card">
+                        <h4>Asset Turnover</h4>
+                        <p>Asset Turnover measures how efficiently a company uses its assets to generate sales.</p>
+                        <div class="ratio-formula">Formula: Sales ÷ Total Assets</div>
+                        <p class="ratio-info-desc">A higher asset turnover ratio indicates efficient use of assets. Above 1 is generally good.</p>
+                    </div>
+                    <div class="ratio-info-card">
+                        <h4>Inventory Turnover</h4>
+                        <p>Inventory Turnover measures how many times a company's inventory is sold and replaced over a period.</p>
+                        <div class="ratio-formula">Formula: Cost of Goods Sold ÷ Inventory</div>
+                        <p class="ratio-info-desc">A higher inventory turnover means efficient inventory management. 5-10 is typical for many industries.</p>
+                    </div>
+                </div>
+                <div class="ratio-category-block">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <span class="ratio-header">
+                            <svg fill="none" viewBox="0 0 24 24"><path d="M7 20V7a5 5 0 0 1 10 0v13" stroke="#facc15" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 20h20" stroke="#facc15" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 20a5 5 0 0 0 10 0" stroke="#facc15" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <h3 class="ratio-category-title">Leverage Ratios</h3>
+                        </span>
+                    </div>
+                    <div class="ratio-info-card">
+                        <h4>Debt to Equity</h4>
+                        <p>Debt to Equity measures a company's financial leverage by comparing total debt to shareholders' equity.</p>
+                        <div class="ratio-formula">Formula: Total Liabilities ÷ Shareholders' Equity</div>
+                        <p class="ratio-info-desc">A lower debt to equity ratio is generally better. A ratio below 2 is considered healthy for most businesses.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Walmart Analysis Demo Page -->
+        <section id="walmart-analysis" class="page">
+            <header class="app-header">
+            </header>
+            <div class="report-section">
+                <div class="report-section-header">Company Info</div>
+                <div class="report-section-box">
+                    <div class="report-info-row">
+                        <div class="report-label">Company Name</div>
+                        <div class="report-value">Walmart, Inc.</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Location</div>
+                        <div class="report-value">Headquartered in Bentonville, Arkansas</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Product Type</div>
+                        <div class="report-value">Physical Product</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Industry</div>
+                        <div class="report-value">G - Retail Trade</div>
+                    </div>
+                </div>
+            </div>
+            <div class="report-section">
+                <div class="report-section-header">Financial Information</div>
+                <div class="report-section-description">
+                    For our calculations, we used WMT’s FY2025 data as it is the most recent yearly data available. Here is the link to the data: 
+                    <a href="https://stock.walmart.com/_assets/_3080d8d91811bb77088b552b06cc9622/walmart/db/938/9939/earnings_release/Earnings+Release+%28FY25+Q4%29.pdf" target="_blank" rel="noopener noreferrer">https://stock.walmart.com/_assets/_3080d8d91811bb77088b552b06cc9622/walmart/db/938/9939/earnings_release/Earnings+Release+%28FY25+Q4%29.pdf</a>
+                </div>
+                <div class="report-section-box">
+                    <div class="report-info-row">
+                        <div class="report-label" style="font-size:1.4rem; font-weight:700; margin-bottom:18px;">Income Statement (in millions)</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Gross Revenue</div>
+                        <div class="report-value">$680,985</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Costs and Expenses</div>
+                        <div class="report-value">$651,637</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Net Income</div>
+                        <div class="report-value">$19,436</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Sales</div>
+                        <div class="report-value">$674,538</div>
+                    </div>
+                </div>
+                <div class="report-section-box">
+                    <div class="report-info-row">
+                        <div class="report-label" style="font-size:1.4rem; font-weight:700; margin-bottom:18px;">Balance Sheet</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Current Assets</div>
+                        <div class="report-value">$79,458</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Current Liabilities</div>
+                        <div class="report-value">$96,584</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Shareholder's Equity</div>
+                        <div class="report-value">$97,421</div>
+                    </div>
+                    <div class="report-info-row">
+                        <div class="report-label">Inventory</div>
+                        <div class="report-value">$56,435</div>
+                    </div>
+                </div>
+            </div>
+            <div class="report-section">
+                <div class="report-section-header" style="text-align:center; margin-bottom: 40px;">Financial Ratio Information</div>
+                <div class="walmart-ratios-wrapper" style="display: flex; flex-direction: column; align-items: center;">
+                  <div class="ratio-cards-header" style="position: static; margin: 0 0 24px 0; justify-content: center;">
+                    <span class="ratio-green-logo">&#8599;</span>
+                    <span class="ratio-cards-title" style="font-size:1.5rem;">Profitability Ratios</span>
+                  </div>
+                  <!-- Triangle layout for profitability ratio cards -->
+                  <div style="display: flex; flex-direction: column; align-items: center; width: fit-content;">
+                    <div style="display: flex; justify-content: center; width: 100%;">
+                      <div class="ratio-card" style="margin-bottom: 16px;">
+                        <div class="ratio-card-title">Net Profit Margin</div>
+                        <div class="ratio-card-value">2.85%</div>
+                        <div class="ratio-card-desc">Measures how much net income is generated as a percentage of revenue.</div>
+                        <div class="ratio-card-status average"><span class="status-icon">&#9650;</span> Average Net Profit Margin</div>
+                      </div>
+                    </div>
+                    <div style="display: flex; flex-direction: row; gap: 32px; justify-content: center;">
+                      <div class="ratio-card">
+                        <div class="ratio-card-title">Return on Equity (ROE)</div>
+                        <div class="ratio-card-value">19.95%</div>
+                        <div class="ratio-card-desc">Measures the profitability of a business in relation to shareholder's equity.</div>
+                        <div class="ratio-card-status good"><span class="status-icon">&#9650;</span> Good Return on Equity</div>
+                      </div>
+                      <div class="ratio-card">
+                        <div class="ratio-card-title">Return on Assets (ROA)</div>
+                        <div class="ratio-card-value">7.45%</div>
+                        <div class="ratio-card-desc">Measures how efficiently a company uses its assets to generate earnings.</div>
+                        <div class="ratio-card-status good"><span class="status-icon">&#9650;</span> Good Return on Assets</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="height: 64px;"></div>
+                  <div class="ratio-cards-header" style="position: static; margin: 0 0 0 0; justify-content: center;">
+                    <span class="ratio-cards-title" style="font-size:1.5rem;">Liquidity Ratios</span>
+                  </div>
+                  <div class="ratio-cards-row" style="margin: 32px 0 0 0; justify-content: center;">
+                    <div class="ratio-card">
+                      <div class="ratio-card-title">Current Ratio</div>
+                      <div class="ratio-card-value">0.82</div>
+                      <div class="ratio-card-desc">Measures a company's ability to pay short-term obligations.</div>
+                      <div class="ratio-card-status poor"><span class="status-icon">&#9650;</span> Poor Current Ratio</div>
+                    </div>
+                    <div class="ratio-card">
+                      <div class="ratio-card-title">Quick Ratio</div>
+                      <div class="ratio-card-value">0.24</div>
+                      <div class="ratio-card-desc">Measures a company's ability to meet short-term obligations with its most liquid assets.</div>
+                      <div class="ratio-card-status poor"><span class="status-icon">&#9650;</span> Poor Quick Ratio</div>
+                    </div>
+                  </div>
+                  <div style="height: 300px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About CompFinance Page -->
+        <section id="about-compfinance" class="page">
+            <header class="app-header">
+            <div class="welcome-center">
+                <h1 class="welcome-message">About CompFinance</h2>
+            </div>
+            <div class="button-group" style="margin-top: 40px;">
+                <button type="button" class="back-btn" onclick="navigateTo('overview')">Back</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 
